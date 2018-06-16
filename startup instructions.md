@@ -20,9 +20,10 @@ In order to make the package you need to run the following code:
 
 `catkin_make`
 
+`source devel/setup.bash`
+
 `chmod +x src/collision_avoidance/main.py`
 
-`source devel/setup.bash`
 
 ## Running code
 

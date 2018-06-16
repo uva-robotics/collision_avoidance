@@ -18,6 +18,8 @@ The files 'CMakeLists.txt', 'package.xml' and 'setup.py' have been changed (usin
 
 In order to make the package you need to run the following code:
 
+`cd ..`    (the following code needs to be run in the uva-robotics folder)
+
 `catkin_make`
 
 `source devel/setup.bash`

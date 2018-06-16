@@ -25,13 +25,26 @@ def sonar_front(data):
         twist_msg.angular.y= 0
         twist_msg.angular.z = 0
 
-        print("EMERGENCY STOP", data.range)
+        print("EMERGENCY STOP FRONT", data.range)
         publisher_velocity.publish(twist_msg)
         speech()
         emergency_stop = True
 
-# def sonar_back(data):
-#     print(data.range)
+def sonar_back(data):
+    print(data.range)
+    if data.range < RANGE and emergency_stop is False:
+        twist_msg = Twist()
+        twist_msg.linear.x = 0
+        twist_msg.linear.y= 0
+        twist_msg.linear.z = 0
+        twist_msg.angular.x = 0
+        twist_msg.angular.y= 0
+        twist_msg.angular.z = 0
+
+        print("EMERGENCY STOP BACK", data.range)
+        publisher_velocity.publish(twist_msg)
+        emergency_stop = True
+
 
 # def laser_detector(data):
 #     print(data.ranges)

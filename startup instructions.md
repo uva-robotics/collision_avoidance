@@ -30,3 +30,15 @@ In order to make the package you need to run the following code:
 ## Running code
 
 `rosrun collision_avoidance main.py`  
+
+## Keyboard moving
+
+Install:
+
+`sudo apt-get install ros-kinetic-teleop-twist-keyboard`
+
+Run:
+
+`rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
+
+Make sure to slow Pepper down before moving her!

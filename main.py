@@ -2,10 +2,13 @@
 
 import rospy
 import time
+import numpy as np
 from std_msgs.msg import String
 from sensor_msgs.msg import Range
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
+
+from itertools import groupby
 
 
 emergency_stop = False
@@ -51,12 +54,16 @@ def sonar_back(data):
 
 
 def laser_detector(data):
-    ranges = [x for x in data.ranges if x != -1.0]
-    print(ranges[30:44])
-
+    means = []
+    ranges = [list(g) for k, g in groupby(data.ranges, lambda x: x != -1.0) if k]
+    for r in ranges:
+        tmp = np.array(r)
+        means.append(np.mean(tmp[tmp < data.range_max]))
+    
+    print(means)
 
 if __name__ == '__main__':
-    rospy.init_node("Chris_main")
+    rospy.init_node("collision_avoidance")
     publisher_speech = rospy.Publisher("/speech", String, queue_size=10)
     publisher_velocity = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
     # rospy.Subscriber("/pepper_robot/sonar/back", Range, sonar_back)
